@@ -7,6 +7,6 @@ public class componentController {
             selectedValue = value;
         }
     }
-    //important
+    //important 123x
     public Boolean editMode {get; private set;}
 }
