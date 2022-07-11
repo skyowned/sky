@@ -8,5 +8,6 @@ public class componentController {
         }
     }
     //important 123x1
+    //for working branch
     public Boolean editMode {get; private set;}
 }
