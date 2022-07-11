@@ -1,0 +1,120 @@
+<apex:page sidebar="false" showheader="false" lightningStylesheets="true">
+    <apex:slds />
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"/>
+        <script>
+        function startPrintProcess(canvasObj, fileName, callback) {
+            var pdf = new jsPDF('l', 'pt', 'a4'),
+                pdfConf = {
+                    pagesplit: false,
+                    background: '#fff'
+                };
+            document.body.appendChild(canvasObj); //appendChild is required for html to add page in pdf
+            pdf.addHTML(canvasObj, 0, 0, pdfConf, function() {
+                document.body.removeChild(canvasObj);
+                pdf.addPage();
+                pdf.save(fileName + '.pdf');
+                callback();
+            });
+        }
+        
+        function printpdf()
+        { 
+            html2canvas(document.getElementById('dom-to-print'), {
+                allowTaint: true,
+            	taintTest: false,
+                onrendered: function(canvasObj) {
+                    startPrintProcess(canvasObj, 'printedPDF',function (){
+                        alert('PDF saved');
+                    });
+                },
+                width:1350,
+                height:1200
+                
+            })
+        }
+        </script>
+    </head>
+    <body>
+        <div id='dom-to-print'>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="slds-text-title_caps" scope="col">
+                            <div class="slds-truncate" title="Opportunity Name">Opportunity Name</div>
+                        </th>
+                        <th class="slds-text-title_caps" scope="col">
+                            <div class="slds-truncate" title="Account Name">Account Name</div>
+                        </th>
+                        <th class="slds-text-title_caps" scope="col">
+                            <div class="slds-truncate" title="Close Date">Close Date</div>
+                        </th>
+                        <th class="slds-text-title_caps" scope="col">
+                            <div class="slds-truncate" title="Stage">Stage</div>
+                        </th>
+                        <th class="slds-text-title_caps" scope="col">
+                            <div class="slds-truncate" title="Confidence">Confidence</div>
+                        </th>
+                        <th class="slds-text-title_caps" scope="col">
+                            <div class="slds-truncate" title="Amount">Amount</div>
+                        </th>
+                        <th class="slds-text-title_caps" scope="col">
+                            <div class="slds-truncate" title="Contact">Contact</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        <th data-label="Opportunity Name" scope="row">
+                            <div class="slds-truncate" title="Cloudhub"><a href="javascript:void(0);" tabindex="-1">Cloudhub</a></div>
+                        </th>
+                        <td data-label="Account Name">
+                            <div class="slds-truncate" title="Cloudhub">Cloudhub</div>
+                        </td>
+                        <td data-label="Close Date">
+                            <div class="slds-truncate" title="4/14/2015">4/14/2015</div>
+                        </td>
+                        <td data-label="Prospecting">
+                            <div class="slds-truncate" title="Prospecting">Prospecting</div>
+                        </td>
+                        <td data-label="Confidence">
+                            <div class="slds-truncate" title="20%">20%</div>
+                        </td>
+                        <td data-label="Amount">
+                            <div class="slds-truncate" title="$25k">$25k</div>
+                        </td>
+                        <td data-label="Contact">
+                            <div class="slds-truncate" title="jrogers@cloudhub.com"><a href="javascript:void(0);" tabindex="-1">jrogers@cloudhub.com</a></div>
+                        </td>
+                    </tr>
+                    <tr class="slds-hint-parent">
+                        <th data-label="Opportunity Name" scope="row">
+                            <div class="slds-truncate" title="Cloudhub + Anypoint Connectors"><a href="javascript:void(0);" tabindex="-1">Cloudhub + Anypoint Connectors</a></div>
+                        </th>
+                        <td data-label="Account Name">
+                            <div class="slds-truncate" title="Cloudhub">Cloudhub</div>
+                        </td>
+                        <td data-label="Close Date">
+                            <div class="slds-truncate" title="4/14/2015">4/14/2015</div>
+                        </td>
+                        <td data-label="Prospecting">
+                            <div class="slds-truncate" title="Prospecting">Prospecting</div>
+                        </td>
+                        <td data-label="Confidence">
+                            <div class="slds-truncate" title="20%">20%</div>
+                        </td>
+                        <td data-label="Amount">
+                            <div class="slds-truncate" title="$25k">$25k</div>
+                        </td>
+                        <td data-label="Contact">
+                            <div class="slds-truncate" title="jrogers@cloudhub.com"><a href="javascript:void(0);" tabindex="-1">jrogers@cloudhub.com</a></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button id='print-btn' class='print-btn' onclick='printpdf();return false;'>Create PDF</button>
+    </body>
+</apex:page>

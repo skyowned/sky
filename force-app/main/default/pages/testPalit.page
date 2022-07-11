@@ -1,0 +1,18 @@
+<apex:page controller="testPalitController" sidebar="false">
+    <apex:pageBlock >
+            <apex:pageBlockTable value="{!wrapperLst}" var="c">
+                <apex:column headerValue="Name">
+                    {!c.Name}
+                </apex:column>
+                <apex:column headerValue="Phone">
+                    {!c.Phone}
+                </apex:column>                
+                <apex:column headerValue="Department">
+                	{!c.Department}
+                </apex:column>
+                <apex:column headerValue="DOB">
+                    {!c.Birthdate}
+                </apex:column>
+            </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

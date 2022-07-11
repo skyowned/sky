@@ -1,0 +1,10 @@
+<template>
+    <div class="slds-m-around_small">
+    <c-search-component onsearch={handleSearch}></c-search-component>
+    </div>
+    <template if:true={records}>
+        <template for:each ={records} for:item="rec">
+           <c-record-list key={rec.Id} record={rec}  iconname={iconname}></c-record-list>
+        </template>
+    </template>
+</template>

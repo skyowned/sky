@@ -1,0 +1,79 @@
+<apex:page controller="image">
+    <style>
+    #droparea {
+        position: relative;
+        height: 5em;
+        font-size: 3em;
+        color: #ccc;
+        border: 5px dotted #ccc;
+    }
+    #droparea div {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        text-align: center;
+        margin-top: -0.5em;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    </style>
+    <script>
+    (function() {
+        var maxWidth = 800, maxHeight = 600, fileName;
+        function canDropHere(event) {
+            var allowed = event.dataTransfer.files && event.dataTransfer.files.length && event.dataTransfer.files[0].type.match(/^image\//);
+            event.stopPropagation();
+            event.preventDefault();
+            event.dataTransfer.dropEffect = allowed? "copy": "none";
+            return !allowed;
+        }
+        function onDrop(event) {
+            var fr = new FileReader();
+            fr.addEventListener("load", onFileLoad, true);
+            try {
+                fileName = event.dataTransfer.files[0].name;
+                fr.readAsDataURL(event.dataTransfer.files[0]);
+            } catch(e) { alert(e); }
+            event.stopPropagation();
+            event.preventDefault();
+            return false;
+        }
+        function onFileLoad(event) {
+            var sx, sy, scale, p1,
+                img     = document.createElement("img"),
+                canvas  = document.createElement("canvas"),
+                context = canvas.getContext("2d");
+            img.src     = event.currentTarget.result;
+            if(img.width > maxWidth || img.height > maxHeight) {
+                scale = Math.min(maxWidth/img.width, maxHeight/img.height);
+                sx    = Math.floor(img.width*scale);
+                sy    = Math.floor(img.height*scale);
+            } else {
+                sx = img.width;
+                sy = img.height;
+            }
+            canvas.width = sx;
+            canvas.height = sy;
+            context.drawImage(img, 0, 0, sx, sy);
+            p1 = canvas.toDataURL().match(/data:(.+);base64,(.+)/);
+            {!$RemoteAction.image.saveImage}(fileName, p1[1], p1[2], onSaveResult);
+        }
+        function onSaveResult(result, event) {
+            alert('File was saved as: '+result);
+        }
+        function onLoad() {
+            var droparea = document.querySelector("#droparea");
+            droparea.addEventListener("drop", onDrop, true);
+            droparea.addEventListener("dragenter", canDropHere, true);
+            droparea.addEventListener("dragover", canDropHere, true);
+        }
+        addEventListener("load", onLoad, true);
+    }());
+    </script>
+    <div id="droparea">
+        <div>
+            Drop an image file here
+        </div>
+    </div>
+</apex:page>

@@ -1,0 +1,10 @@
+<apex:component controller="MisCompController">
+    <apex:attribute name="record" type="string" required="true" description="Custom record" />
+    <apex:pageBlock title="viewing {!record}">
+        <apex:pageBlockTable value="{!FSLIs}" var="a">
+            <apex:column headerValue="Name">
+                <apex:outputText value="{!a.Name}"/>
+            </apex:column>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:component>

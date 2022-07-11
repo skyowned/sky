@@ -1,0 +1,128 @@
+<apex:page controller="MultifunctionWebPageController">
+    <script>
+    function submitEmployee()
+    {
+        callMe();
+        }
+    function submitEmployeeWithVR(mId)
+    {
+        alert(mId);
+        var setId=mId;
+        var SelecOptionsStr = '';
+        var setName=document.getElementById('j_id0:form:entry:name').value;
+        var setActive=document.getElementById('j_id0:form:entry:j_id32').value;
+        var setEmail=document.getElementById('j_id0:form:entry:j_id35').value;
+        var setJoiningDate=document.getElementById('j_id0:form:entry:j_id38').value;
+        var setPreference=document.getElementById('j_id0:form:entry:j_id41');
+        /*for(var i = 0; i < setPreference.options.length; i++)
+            {
+                        var opt = selectOptions[i];
+                        if(opt.selected)
+                        {
+                                    if(i = 0)
+                                    {
+                                                SelecOptionsStr = setPreference.options[i].text;
+                                    }
+                                    else
+                                    {
+                                                SelecOptionsStr = SelecOptionsStr + ';' + setPreference.options[i].text;
+                                    }
+                        }
+             }*/
+        //var setLocation=SelecOptionsStr;
+        var setPhone=document.getElementById('j_id0:form:entry:j_id44').value;
+        var setSalary=document.getElementById('j_id0:form:entry:j_id47').value;
+        var setSex=document.getElementById('j_id0:form:entry:j_id50').value;
+        var setDescription=document.getElementById('j_id0:form:entry:j_id53').value;
+        alert(setId);
+        alert(setName);
+        alert(setActive);
+        alert(setJoiningDate);
+        //alert(setLocation);
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.MultifunctionWebPageController.SaveEmployee}',
+            setId,setName,setActive,setEmail,setJoiningDate,setPreference,setPhone,setSalary,setSex,setDescription,
+
+            function(result,event)
+            {
+               if (event.status) {
+                alert('success');
+            } else if (event.type === 'exception') {
+                //handle errors
+                  alert('error');
+            } else {
+                alert('unknown');
+            }
+        }, 
+            {escape:true}
+            );
+        }
+    </script>
+    <apex:pageMessages id="validation"/>
+
+    <apex:actionStatus id="stat">
+        <apex:facet name="start">
+            <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.75; z-index: 1000; background-color: black;">
+                &nbsp;
+            </div>
+            <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 30% 50%">
+                <img src="http://upload.wikimedia.org/wikipedia/commons/e/ed/Cursor_Windows_Vista.gif" />
+            </div>
+            </apex:facet>
+        </apex:actionStatus>
+    <apex:form id="form">
+            <apex:actionFunction action="{!save}" name="callMe" rerender="onlyTable,validation"/>
+        <apex:pageBlock id="entry">
+            <apex:outputLabel value="Employee Name"/>   
+        <apex:inputField id="name" value="{!multifuction.Name}"/>
+            <br/>
+        <apex:outputLabel value="Active Employee"/>  
+            <apex:inputField value="{!multifuction.Active__c}"/>
+            <br/>
+            <apex:outputLabel value="Employee Email"/>  
+        <apex:inputField value="{!multifuction.EmployeeEmail__c}"/>
+            <br/>
+            <apex:outputLabel value="Employee Joining Date"/>  
+        <apex:inputField value="{!multifuction.EmployeeJoiningDate__c}"/>
+            <br/>
+             <apex:outputLabel value="Employee Location Preference"/> 
+        <apex:inputField value="{!multifuction.EmployeeLocationPreference__c}"/>
+            <br/>
+                       <apex:outputLabel value="Employee Phone"/> 
+        <apex:inputField value="{!multifuction.EmployeePhone__c}"/>
+            <br/>
+                       <apex:outputLabel value="Employee Salary"/> 
+        <apex:inputField value="{!multifuction.EmployeeSalary__c}"/>
+            <br/>
+                       <apex:outputLabel value="Employee Sex"/> 
+        <apex:inputField value="{!multifuction.EmployeeSex__c}"/>
+            <br/>
+                       <apex:outputLabel value="Employee Description"/> 
+        <apex:inputField value="{!multifuction.EmployeeDescription__c}"/>
+            <br/>
+        <apex:pageBlockButtons >
+            <apex:commandButton value="Submit" action="{!save}" />
+            <apex:commandButton value="Submit with Action Function" onclick="submitEmployee();return false;"/>
+            <apex:commandButton value="Submit with Visualforce Remoting" onclick="submitEmployeeWithVR('{!multifuction.Id}');return false;" rerender="onlyTable,validation"/>
+            <!--<button onclick="submitEmployeeWithVR()">Submit with Visualforce Remoting</button>-->
+        </apex:pageBlockButtons>
+            <apex:outputPanel >
+            <apex:pageBlockTable value="{!multifuctions}" var="element" id="onlyTable">
+                <apex:column headerValue="Employee Id">
+                <apex:outputField value="{!element.Id}"/>
+                </apex:column> 
+                <apex:column headerValue="Employee Name" >
+                    <apex:outputField value="{!element.Name}"/>
+                    <apex:actionSupport event="onclick" action="{!individual}" rerender="entry,validation" status="stat">
+                        <apex:param id="employee" name="employeeId" value="{!element.Id}" assignTo="{!employeeId}"/>
+                    </apex:actionSupport>
+                </apex:column>
+                <apex:column headerValue="Active">
+                <apex:outputField value="{!element.Active__c}"/>
+                </apex:column>         
+            </apex:pageBlockTable>
+                
+             </apex:outputPanel>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

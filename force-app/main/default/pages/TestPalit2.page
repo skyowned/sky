@@ -1,0 +1,4 @@
+<apex:page readonly="true" >
+    <apex:sectionHeader title="{!$objectType.Evidence__c.LabelPlural}" subtitle="Home"/>
+    <apex:ListViews type="Evidence__c" />
+</apex:page>

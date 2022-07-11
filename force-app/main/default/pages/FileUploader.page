@@ -1,0 +1,27 @@
+<apex:page sidebar="false" controller="FileUploader">
+   <apex:form >
+      <apex:sectionHeader title="Upload data from CSV file"/>
+      <apex:pagemessages />
+      <apex:pageBlock >
+             <center>
+              <apex:inputFile value="{!contentFile}" filename="{!nameFile}" /> <apex:commandButton action="{!ReadFile}" value="Upload File" id="theButton" style="width:70px;"/>
+              
+             </center>  
+      <apex:pageblocktable value="{!uploadedFSLIs}" var="acc" rendered="{!NOT(ISNULL(uploadedFSLIs))}">
+          <apex:column headerValue="FSLI Name">
+              <apex:outputField value="{!acc.Name}"/>
+          </apex:column>
+          <apex:column headerValue="Scope">
+              <apex:inputField value="{!acc.Scope__c}"/>
+          </apex:column>
+          <apex:column headerValue="IsDeleted">
+              <apex:inputField value="{!acc.IsDeleted__c}"/>
+          </apex:column>
+          <apex:column headerValue="Engagement">
+              <apex:inputField value="{!acc.EngagementId__c}"/>
+          </apex:column>
+              </apex:pageblocktable> 
+      
+      </apex:pageBlock>       
+   </apex:form>   
+</apex:page>

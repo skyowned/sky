@@ -1,0 +1,6 @@
+<apex:component controller="EmployeeComponentController">
+    <apex:attribute name="emp" description="just a description" type="String" required="required" assignTo="{!controllerValue}"/>
+    <apex:pageBlock >
+    {!controllerValue}
+    </apex:pageBlock>
+</apex:component>

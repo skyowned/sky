@@ -1,0 +1,23 @@
+<template>
+    <div>
+        <template if:true={isTom}>
+        <img src="http://www.cartoonbucket.com/wp-content/uploads/2015/05/Tom-And-Jerry-Picture.jpg"
+        width="200"
+        height="200"/>
+    </template>
+    <template if:true={isJerry}>
+        <img src="http://www.cartoonbucket.com/wp-content/uploads/2015/05/Tom-And-Jerry-Taking-Rest-600x370.gif"
+        width="200"
+        height="200"/>
+    </template>
+    </div>
+    <div class="slds-m-around_small">
+        <lightning-button label="Show Tom"
+        variant="brand"
+        onclick={showTom}></lightning-button>
+        <lightning-button label="Show Jerry"
+        variant="brand"
+        onclick={showJerry}></lightning-button>     
+    </div>
+    
+</template>

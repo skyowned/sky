@@ -1,0 +1,1 @@
+trigger Trig_Account on Account(after insert, after update) { et4ae5.triggerUtility.automate('Account'); }

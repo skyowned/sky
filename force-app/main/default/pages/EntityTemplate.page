@@ -1,0 +1,22 @@
+<apex:page >
+     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        alert('something');
+    j$=jquery.noConflict();
+    j$('#getValBtn').click(function(){
+  alert(j$('[id$=empname]').val()); //here is where we are grabbing the visualforce element by id
+});
+    </script>
+    <apex:form id="emp">
+        <apex:insert name="Name"/>
+        <br/>
+        <apex:insert name="Designation"/>
+        <br/>
+        <apex:insert name="Salary"/>
+        <br/>
+        <apex:insert name="Type"/>
+        <br/>
+        <apex:commandButton action="{!clickForSave}" value="Save" />   
+        <button type="button" id="getValBtn">Get Input Value</button>
+    </apex:form>
+</apex:page>

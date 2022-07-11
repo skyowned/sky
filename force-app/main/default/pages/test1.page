@@ -1,0 +1,23 @@
+<apex:page standardController="FSLI__c" extensions="fsliextensions">
+    <apex:messages />
+    <apex:form >
+    <apex:pageBlock >
+        {!Lucky}
+        <apex:pageblocksection title="FSLI Lists">       
+            <apex:pageBlockTable value="{!FSLIs}" var="item" rowClasses="odd,even" >
+                <apex:column headerValue="Edit">
+                        <apex:commandLink value="Edit" action="{!editFSLI}" >
+                        <apex:param value="{!item.Id}" id="fid" name="fsliId" assignTo="{!fsliId}" />
+                    </apex:commandLink>
+                    </apex:column>
+                <apex:column headerValue="FSLIName">
+                    <apex:outputText value="{!item.name}"/>
+                </apex:column>
+                <apex:column headerValue="Scope">
+                    <apex:inputCheckbox disabled="True" value="{!item.Scope__c}"/>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageblocksection>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

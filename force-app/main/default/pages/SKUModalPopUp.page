@@ -1,0 +1,63 @@
+<apex:page StandardController="Opportunity" extensions="OpportunitySKUController">
+    <apex:outputPanel style="display:none">
+        <apex:outputPanel id="SKU" layout="block">
+            <label name="SKUName" >SKU Name</label><input type="text" id="SKUName"/>
+            <br/>
+            <label name="SKUNumber">SKU #</label><input type="text" id="SKUNumber"/>
+            
+            <input type="button" id="SKUSubmit" value="Submit"/>
+        </apex:outputPanel>
+    </apex:outputPanel>
+    <script type="text/javascript">
+    function Check()
+    {
+        var picklistselected=document.getElementById('j_id0:addOpportunity:j_id4:j_id5:j_id7').value;
+        if(picklistselected=='Closed Lost')
+        {
+            var dialog;
+            dialog = new SimpleDialog("SD"+Dialogs.getNextId(), false);    
+            dialog.setTitle("SKU");  
+            dialog.createDialog(); 
+            dialog.importContentNode(document.getElementById("{!$Component.SKU}"));    
+            dialog.show();   
+        }
+    }
+    document.getElementById("SKUSubmit").onclick = saveRec;
+    function saveRec()
+    {
+        var Name=document.getElementById('SKUName').value;
+        var SKUNumber=document.getElementById('SKUNumber').value;
+        var oppId=document.getElementById('j_id0:addOpportunity:j_id4:j_id5:testId').value;
+        insertRec(oppId,Name, SKUNumber);
+    }
+    
+    function insertRec(oppId,Name, SKUNumber)
+    {
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.OpportunitySKUController.SaveSKU}',
+            oppId,Name,SKUNumber,
+            function(result,event)
+            {
+               if (event.status) {
+                alert('success');
+            } else if (event.type === 'exception') {
+                //handle errors
+                  alert('error');
+            } else {
+                alert('unknown');
+            }
+        }, 
+            {escape:true}
+            );
+    }
+    </script>
+    <apex:form id="addOpportunity">
+        <apex:pageBlock >
+            <apex:pageblocksection title="Opportunity">
+                <apex:inputtext value="{!opportunity.Id}" id="testId" />
+                <apex:inputfield value="{!opportunity.Name}" />
+                <apex:inputfield value="{!opportunity.StageName}" onchange="Check();"/>
+            </apex:pageblocksection> 
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

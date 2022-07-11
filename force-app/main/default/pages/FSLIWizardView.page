@@ -1,0 +1,50 @@
+<apex:page controller="WizardDataController" >
+    <script type="text/javascript">
+    function getRemoteAccount()
+    {
+        alert('function called');
+        alert('function called 3');
+        //e.preventDefault();
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.WizardDataController.getEngagementName}',
+            function(result, event){
+                alert('function called 2'+result);
+                if(event.status)
+                {
+                    document.getElementById('accname').innerHTML = result;
+                }
+                else if (event.type === 'exception') {
+                    document.getElementById("responseErrors").innerHTML =event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                }
+            },
+            {escape:true}
+            
+        );
+        
+    }
+    </script>
+    <apex:messages />
+    
+    <apex:form id="addFSLIForm">
+        
+        
+        
+        <span id="accname"/>
+        <button onclick="getRemoteAccount()">Get Account</button>
+        
+        <div id="responseErrors"></div>
+        <apex:pageBlock >
+            <apex:pageblocksection title="FSLI">
+                
+                <apex:inputfield value="{!Fsli.Name}" required="True"/>
+                <apex:inputfield value="{!Fsli.IsDeleted__c}" />
+                <apex:inputfield value="{!Fsli.Scope__c}" required="True"/>
+                <apex:inputfield value="{!Fsli.EngagementId__c}"/>
+            </apex:pageblocksection>
+            
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Next >>>" action="{!redirectToRisk}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

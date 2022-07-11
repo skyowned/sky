@@ -1,0 +1,77 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes"
+                controller="GetMultiFunctionRecords" access="global" >
+     <ltng:require styles="/resource/slds103/styles/salesforce-lightning-design-system.css"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:attribute name="mf" type="Multifuction__c[]"/>
+    <aura:attribute name="multi" type="Multifuction__c" 
+                    default="{'sobjectType': 'Multifuction__c',
+                         'Name': '',
+                         'Designation__c ': '',
+                         'Salary__c': '', 
+                         'EmployeeSex__c': ''
+                             }"/>
+    <aura:attribute name="suc" type="boolean" default="false"/>
+    <div class="container-fluid">
+        <h3>Please Enter The Candidate Information</h3>
+        <div class="form-group">
+            <label>Name</label>
+            <ui:inputText class="form-control" value="{!v.multi.Name}"/>
+        </div>
+        <div class="form-group">
+            <label>Designation</label>
+            <ui:inputText class="form-control" value="{!v.multi.Designation__c}"/>
+        </div>
+        <div class="form-group">
+            <label>Salary</label>
+            <ui:inputText class="form-control" value="{!v.multi.Salary__c}"/>
+        </div>
+        <div class="form-group">
+            <label>Sex</label>
+            <ui:inputSelect class="dynamic form-control" 
+                            aura:id="InputSelectDynamic" value="{!v.multi.EmployeeSex__c}"/> 
+        </div>
+    </div>
+    <div class="col-md-4 text-center">
+        <ui:button class="btn btn-default" press="{!c.create}">Create</ui:button>
+    </div>
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead>
+            <tr class="slds-text-title_caps">
+                <th scope="col">
+                    <div class="slds-truncate" title="Name">Name</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Active__c">Active__c</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="EmployeeDescription__c">EmployeeDescription__c</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="EmployeeEmail__c">EmployeeEmail__c</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration var="m" items="{!v.mf}">
+                <tr>
+                    <td data-label="Account Name">
+                        <div class="slds-truncate" title="{!m.Name}">{!m.Name}</div>
+                    </td>
+                    <td data-label="Close Date">
+                        <div class="slds-truncate" title="{!m.Active__c}">{!m.Active__c}</div>
+                    </td>
+                    <td data-label="Prospecting">
+                        <div class="slds-truncate" title="{!m.EmployeeDescription__c}">{!m.EmployeeDescription__c}</div>
+                    </td>
+                    <td data-label="Confidence">
+                        <div class="slds-truncate" title="{!m.EmployeeEmail__c}">{!m.EmployeeEmail__c}</div>
+                    </td>
+                    
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+    <aura:renderIf isTrue="{!v.suc}">
+             <c:Success ></c:Success>  
+    </aura:renderIf>        
+</aura:component>

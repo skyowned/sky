@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title={sectionName}>    
+        <lightning-layout>
+                <lightning-layout-item flexibility="auto" padding="around-small">                    
+                    <template if:true={enableIncrement}>
+                        {incrementValue}
+                        <lightning-button label="+" variant="brand" onclick={increment} class="slds-m-left_large"></lightning-button>
+                    </template>
+                </lightning-layout-item>
+            </lightning-layout>
+    </lightning-card>
+</template>

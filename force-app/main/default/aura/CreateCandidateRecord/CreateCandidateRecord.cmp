@@ -1,0 +1,38 @@
+<aura:component controller="CreateCandidateRecord" 
+				implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" 
+				access="global" >
+    
+    <!-- Include Static Resource-->
+    <ltng:require styles="/resource/bootstrap/css/bootstrap.min.css" 
+                  scripts="/resource/companystore/jquery-1.11.2.min.js,/resource/bootstrap/js/bootstrap.min.js"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <!-- Define Attribute-->
+    <aura:attribute name="candidate" type="Employee__c" default="{'sobjectType': 'Employee__c',
+                         'Name': '',
+                         'Designation__c ': '',
+                         'Salary__c': '', 
+                         'Type__c': ''
+                       }"/>
+    <div class="container-fluid">
+        <h3>Please Enter The Candidate Information</h3>
+        <div class="form-group">
+            <label>Name</label>
+            <ui:inputText class="form-control" value="{!v.candidate.Name}"/>
+        </div>
+        <div class="form-group">
+            <label>Designation</label>
+            <ui:inputText class="form-control" value="{!v.candidate.Designation__c}"/>
+        </div>
+        <div class="form-group">
+            <label>Salary</label>
+            <ui:inputText class="form-control" value="{!v.candidate.Salary__c}"/>
+        </div>
+        <div class="form-group">
+            <label>Type</label>
+            <ui:inputSelect class="dynamic form-control" aura:id="InputSelectDynamic" value="{!v.candidate.Type__c}"/> 
+        </div>
+    </div>
+    <div class="col-md-4 text-center">
+        <ui:button class="btn btn-default" press="{!c.create}">Create</ui:button>
+  </div>
+</aura:component>

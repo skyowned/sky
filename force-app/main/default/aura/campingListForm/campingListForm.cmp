@@ -1,0 +1,49 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" 
+                access="global" controller="CampingListController">
+<aura:registerEvent name="addItem" type="c:addItemEvent"/>	
+	<aura:attribute name="newItem" type="Camping_Item__c"
+     default="{ 'sobjectType': 'Camping_Item__c',
+                    'Name': '',
+                    'Quantity__c': 0,
+                    'Price__c': 0,
+                    'Packed__c': false }"/>
+    <form class="slds-form--stacked">
+      <div class="slds-form-element slds-is-required">
+          <div class="slds-form-element__control">
+              <lightning:input aura:id="campform" label="Name"
+                  class="slds-input"
+                  value="{!v.newItem.Name}"
+                  required="true"/>
+          </div>
+     </div>
+     <div class="slds-form-element slds-is-required">
+          <div class="slds-form-element__control">
+              <lightning:input type="number" aura:id="campform" 
+                               label="Quantity"
+                               min="1"
+                  class="slds-input"
+                  value="{!v.newItem.Quantity__c}"/>
+          </div>
+      </div>
+      <div class="slds-form-element">
+          <div class="slds-form-element__control">
+              <lightning:input type="number" aura:id="campform" label="Price"
+                               formatter="currency"
+                  class="slds-input"
+                  value="{!v.newItem.Price__c}"
+                  />
+          </div>
+      </div>
+      <div class="slds-form-element">
+          <lightning:input type="checkbox" aura:id="campform" label="Packed?"
+              class="slds-checkbox"
+              checked="{!v.newItem.Packed__c}"/>
+      </div>
+      <div class="slds-form-element">
+         <lightning:button label="Create Camping Item"
+              class="slds-button slds-button--brand"
+              onclick="{!c.clickCreateItem}"/>
+
+      </div>
+    </form>
+</aura:component>

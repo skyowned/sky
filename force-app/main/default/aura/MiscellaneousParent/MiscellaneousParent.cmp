@@ -1,0 +1,60 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" 
+                access="global" >
+    <div class="slds-page-header">
+        <div class="slds-align_absolute-center">
+            <div class="slds-text-heading_large">
+                <div class="slds-m-top_xx-large">
+                    Student Registration Form
+                </div>
+            </div>
+        </div>
+    </div>
+    <aura:attribute name="FirstName" type="String" default="" />
+    <aura:attribute name="LastName" type="String" default="" />
+    <aura:attribute name="FatherName" type="String" default="" />
+    <aura:attribute name="Age" type="Integer" default="" />
+    <aura:attribute name="Sex" type="string[]" default="Male,Female" />
+    <aura:attribute name="studentSex" type="String" default="" />
+    <aura:attribute name="Grade" type="Integer" default="" />
+    <aura:attribute name="DOB" type="Date" default="" />
+    <aura:attribute name="Mobile" type="Integer" default="1234567891" />
+    <aura:attribute name="Email" type="String" default="" />
+    <aura:attribute name="Address" type="String" default="" />
+    <aura:attribute name="IsEligible" type="Boolean" default="" />
+    <!--<aura:attribute name="checked" type="Boolean" default="" />-->
+    <div class="slds-size_3-of-12">
+        <br/><br/>
+        <lightning:input label="First Name" name="studentfirstname" value="{!v.FirstName}" />
+        <br/>
+        <lightning:input label="Last Name" name="studentlastname" value="{!v.LastName}" />
+        <br/>
+        <lightning:input label="Father Name" name="studentfathername" value="{!v.FatherName}" />
+        <br/>
+        <lightning:input label="Age" type="number" name="studentage" value="{!v.Age}"/>
+        <br/>
+        <lightning:select label="Sex" name="sex" value="{!v.studentSex}">
+            <!-- <option value="0">Male</option>
+        <option value="1">Female</option> -->
+            <aura:iteration items="{!v.Sex}" var="sex">
+                <option value="{!sex}" text="{!sex}"></option>
+            </aura:iteration>
+        </lightning:select>
+        <br/>
+        <lightning:input label="Grade" name="number" value="{!v.Grade}"></lightning:input>
+        <br/>
+        <lightning:input label="DOB" name="date" type="date" value="{!v.DOB}" />
+        <br/>
+        <lightning:input label="Mobile" type="tel" value="{!v.Mobile}"></lightning:input>
+        <br/>
+        <lightning:input label="Email" type="email" name="email" value="{!v.Email}" />
+        <br/>
+        <lightning:input label="Address" name="studentAddress" value="{!v.Address}" />
+        <br/>
+        <lightning:input label="Is Eligible" aura:id ="iseligibleCheckbox" name="iseligible" type="checkbox"
+                         onchange="{!c.onChangeCkeckbox}"/>
+        <aura:if isTrue="{!v.IsEligible}">
+            You are eligible for registration.
+        </aura:if>
+        <lightning:button label="Submit"></lightning:button>
+    </div>
+</aura:component>

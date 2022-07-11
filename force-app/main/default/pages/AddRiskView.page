@@ -1,0 +1,19 @@
+<apex:page controller="WizardDataController" tabstyle="Account">
+    <apex:messages />
+    <apex:form id="addRiskForm">
+        <apex:pageBlock >
+          <apex:pageblocksection title="Risk">
+          
+               <apex:inputfield value="{!Risk.Name}" required="True"/>
+               <apex:inputfield value="{!Risk.IsDeleted__c}" />
+               <apex:inputfield value="{!Risk.RiskType__c}" required="True"/>
+              <apex:inputfield value="{!Risk.DependentPL__c}" required="True"/>
+               
+        </apex:pageblocksection>
+        
+        <apex:pageBlockButtons >
+             <apex:commandButton value="Next >>>" action="{!redirectToEGA}"/>
+        </apex:pageBlockButtons>
+       </apex:pageBlock>
+    </apex:form>
+</apex:page>

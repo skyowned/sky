@@ -1,0 +1,41 @@
+<apex:page standardController="FSLI__c" recordSetVar="fslis" tabstyle="Account" extensions="FSLIPagination">
+    <apex:form id="addFSLIForm">
+
+        <apex:pageBlock >
+            <apex:pageblocksection title="FSLI">
+                
+                <apex:inputfield value="{!FSLI__c.Name}" required="True"/>
+                <apex:inputfield value="{!FSLI__c.IsDeleted__c}" />
+                <apex:inputfield value="{!FSLI__c.Scope__c}" required="True"/>
+                <apex:inputfield value="{!FSLI__c.EngagementId__c}"/>
+            </apex:pageblocksection>
+            <apex:pageblocksection title="FSLI Lists">
+                <apex:pageBlockTable value="{!FSLIs}" var="item" rowClasses="odd,even" >
+                    
+                    <apex:column headerValue="Edit">
+                        <apex:commandLink value="Edit" action="{!editFSLI}"/>
+                        <apex:param value="{!item.Id}" id="fId" name="fId" assignTo="{!fId}" /> 
+                    </apex:column>
+                    <apex:column headerValue="FSLIName">
+                        <apex:outputText value="{!item.name}"/>
+                    </apex:column>
+                    <apex:column headerValue="Engagement">
+                        <apex:outputText value="{!item.EngagementId__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="Scope">
+                        <apex:inputCheckbox disabled="True" value="{!item.Scope__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="IsDeleted">
+                        <apex:inputCheckbox disabled="True" value="{!item.IsDeleted__c}"/>
+                    </apex:column>
+                    
+                </apex:pageBlockTable>
+                
+            </apex:pageblocksection>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!save}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+    <apex:relatedList list="FsliRisks__r"/>
+</apex:page>

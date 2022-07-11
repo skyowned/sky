@@ -1,0 +1,17 @@
+<apex:page >
+<apex:includeScript value="{!$Resource.jquery}"/>
+
+  <apex:form >
+      <apex:inputText id="userInput" html-placeholder="Enter Something"/>
+      <button type="button" id="getValBtn">Get Input Value</button>
+  </apex:form>
+  
+<script>
+    
+j$ = jQuery.noConflict();
+// onClick function in jQuery
+j$('#getValBtn').click(function(){
+  alert(j$('[id$=userInput]').val()); //here is where we are grabbing the visualforce element by id
+});
+</script>
+</apex:page>

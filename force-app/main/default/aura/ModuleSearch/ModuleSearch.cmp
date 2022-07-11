@@ -1,0 +1,34 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes"
+                access="global" 
+                controller="ModuleSearchController">
+   
+    <aura:attribute name="searchResult" type="List" description="use for store and display account list return from server"/>
+   <aura:attribute name="searchKeyword" type="String" description="use for store user search input"/>
+   <aura:attribute name="Message" type="boolean" default="false" description="use for display no record found message"/>
+   <aura:attribute name="numberOfRecord" type="integer" default="0" description="use for display Number of records"/>
+   <div class="slds-m-around--large">
+      <form class="slds-form--inline">
+         <div class="slds-form-element">
+            <label class="slds-form-element__label" for="search"></label>
+            <div class="slds-form-element__control">
+               <ui:inputText aura:id="searchId" class="slds-input" value="{!v.searchKeyword}" required="true" placeholder="Type here..."/>
+            </div>
+         </div>
+         <div class="slds-form-element">
+            <button type="button" onclick="{!c.Search}" class="slds-button slds-button--brand">Search</button>
+         </div>
+      </form>
+      <span class="slds-badge">{!v.numberOfRecord}</span>
+            <aura:if isTrue="{!v.Message}">
+               <div class="slds-text-color--error"> No Result Found...</div>
+            </aura:if>
+            <!--### display all records of searchResult attribute by aura:iteration ###-->
+            <aura:iteration items="{!v.searchResult}" var="acc">
+                <lightning:card title="{!acc.Name}">
+                    <p class="slds-p-horizontal_small">
+                        {!acc.Type}
+                    </p>
+                </lightning:card>
+            </aura:iteration>
+   </div>
+</aura:component>

@@ -1,0 +1,8 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="Get_Result" type="String"></aura:attribute>
+    <aura:handler name="loadMyEvent" event="c:Pickchangevent" action="{!c.getValueFromComponentEvent}"/>
+    <c:PicklistComponent/>
+    
+    <!--in parent {!v.Get_Result}-->
+    <c:SelValueComponent fromParent="{!v.Get_Result}"></c:SelValueComponent>
+</aura:component>

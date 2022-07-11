@@ -1,0 +1,11 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:registerEvent name="loadMyEvent" type="c:Pickchangevent"/>
+    <lightning:select aura:id="select" name="select" label="Select a pie" onchange="{! c.onChange }">
+        <option value="">choose one...</option>
+        <option value="apple">apple</option>
+        <option value="pumpkin">pumpkin</option>
+        <option value="cherry">cherry</option>
+        <option value="blueberry">blueberry</option>
+        <option value="pickle">pickle</option>
+    </lightning:select>
+</aura:component>

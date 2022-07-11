@@ -1,0 +1,26 @@
+<apex:page controller="EntityTemplate">
+    <!--<apex:includeScript value="{!$Resource.jquery}"/>-->
+       
+
+    <apex:pageMessages />
+    <apex:image url="{!$Resource.joker}"/>
+    <c:EmployeeComponent emp="aakash"/>
+    <apex:composition template="{!template}">
+        <apex:define name="Name">
+        <apex:inputText id="empname" value="{!EmployeeName}"/>
+        </apex:define>
+         <apex:define name="Designation">
+        <apex:inputText value="{!EmployeeDesignation}"/>
+        </apex:define>
+         <apex:define name="Salary">
+        <apex:inputText value="{!EmployeeSalary}"/>
+        </apex:define>
+        <apex:define name="Type">
+        <apex:selectList value="{!EmployeeType}" size="1">
+            <apex:selectOptions value="{!EmployeeTypeList}"  >
+            </apex:selectOptions>
+        </apex:selectList>
+        </apex:define>
+        </apex:composition>
+    
+</apex:page>

@@ -1,0 +1,9 @@
+<apex:page sidebar="false" showheader="false">
+    <div id="fullcontent" style="text-align:center;"><br />
+        <br /> 
+        <div style="color : #cc2910; font-size : 18px;font-weight:bold;">This is a sample page for Coolnet</div>
+        <br /><br /><br />
+        <div id='name1' style="color : #cc2910; font-size : 15px;font-weight:bold;">This is a Test page</div>
+        <br />
+    </div>
+</apex:page>

@@ -1,0 +1,16 @@
+<apex:page controller="MiscellaneousCustomController" >
+    <c:MisComp record="FSLI__c"/>
+    <apex:form >
+        <apex:pageBlock mode="edit">
+            <apex:pageMessages />
+            <apex:pageBlockSection >
+                <apex:inputField value="{!f.Name}"/>
+                <apex:inputField value="{!f.IsDeleted__c}"/>
+                <apex:inputField value="{!f.Scope__c}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Save" action="{!save}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

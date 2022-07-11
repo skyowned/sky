@@ -1,0 +1,16 @@
+<aura:component >
+    
+    <!-- filesInSeries = Set an array of JS or CSS static resource file paths 
+		They will be loaded **in the order they are passed in**
+	--> 
+    <aura:attribute name="filesInSeries" type="String[]"/>
+    
+     <!-- filesInParallel = Set an array of JS or CSS static resource file paths 
+		They will be loaded in parallel after staticResources 
+	--> 
+    <aura:attribute name="filesInParallel" type="String[]"/>
+    
+    
+	<aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+</aura:component>

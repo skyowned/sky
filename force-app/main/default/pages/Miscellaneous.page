@@ -1,0 +1,233 @@
+<apex:page standardController="Risk__c" renderas="PDF" recordSetVar="risks">
+    <apex:pageBlock >
+        <apex:pageBlockSection >
+            <apex:form >
+                <apex:pageBlockTable value="{!risks}"
+                                var="risk">
+                    <apex:column >
+                        <apex:facet name="header">Name</apex:facet>
+                       
+                        {!risk.Name}
+                         <apex:actionSupport event="onmouseover" rerender="rerenderMe">
+                            <apex:param name="id" value="{!risk.id}"/>
+                        </apex:actionSupport>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Is Deleted</apex:facet>
+                        <apex:outputField value="{!risk.IsDeleted__c}"/>
+                    </apex:column>
+                </apex:pageBlockTable>
+                Increase your productivity by
+unleashing the power of scanning
+Work processes made smarter
+SMARTsend software helps you simplify
+ information management. Now sharing
+documents is easier than ever.
+Share hard copy information in seconds. Scan a
+document once, and SMARTsend will transform
+it to digital and send it to destinations you
+have preprogrammed in a workflow—multiple
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+email addresses, repositories, network folders,
+FTP folders, web URLs or remote printers.
+•	 Use the Scan to Home button to send
+documents to your personal email, ECM
+systems or network folder. Implement as
+a single scan workflow requiring network
+authentication or PIN entry, or as individual
+scan workflows for each walk-up user.
+•	 With the Scan and Store capability, you can
+scan in double-sided and color documents,
+change scan resolutions and view larger
+thumbnails in a larger multifunction device
+UI. Additionally, you can print duplex and in
+color with the Browse and Print feature.
+•	 When creating workflows for distribution,
+you have direct access to your global mail
+directory, so there’s no need to type in
+email addresses.
+•	 Powerful Optical Character Recognition
+(OCR) capabilities (available in Pro Version)
+ensure scanned documents are accurate at
+retaining page layout and formatting in a
+wide range of file formats.
+•	 With SMARTsend Pro, you can specify the
+appropriate file format for each destination
+in your workflow, so if one destination
+requires PDFs or TIFFs and another Word or
+Excel files, it’s no problem.
+•	 Use SMARTsend Pro to convert your scanned
+document into text searchable PDF, Word
+or Excel files and distribute them directly
+to DocuShare® or several other supported
+repositories—turning hard copy into readily
+available, indexed knowledge.
+•	 SMARTsend 3.0 supports OCR to
+MS Word 2007, MS Excel 2007 and
+                Specifications for Xerox® SMARTsend® 3.0
+SMARTsend Key Features
+• Web-based software application that automates
+the digital transformation, conversion and
+distribution of hard copy documents, making
+more information accessible to more people
+• Scanning workflow creation via web
+browser wizards
+• Send to multiple destinations with a single scan
+• Add indexing information (metadata) to
+scanned documents
+• Convert scanned documents into a variety of
+industry standard formats
+• Vary the scanned image format by destination
+• Scan to Home feature allows easy set up of scan
+destinations (email address, FTP site, ECM Systems
+or network folder) for walk-up users
+• Secure encrypted transmission of scanned data
+via HTTPS
+• Private Workflows
+(with MFP Network Authentication)
+• Delivery confirmations via email or printed at
+MFP scan source
+SMARTsend Pro Key Features
+Everything in SMARTsend, plus:
+• Workflow initiation using PaperWare (scan cover
+sheets) enables scan destinations to be modified
+at the scan source
+• Integrated Optical Character Recognition
+facilitates automatic digital archiving and easy
+document repurposing
+System Specifications
+For best performance it is recommended that
+SMARTsend be installed on a dedicated
+server/computer. The minimum requirements are:
+•	 CPU: 	 1.0 GHz or faster
+•	 Hard Drive 	 1 GB or more free disk space
+•	 RAM: 512MB or more.
+1 GB or more is recommended
+for all operating systems and is
+required for Windows Vista)
+•	 Network Protocol: TCP/IP
+(also supports HTTP/HTTPS)
+•	 Single network adapter
+(multiple adapters are not supported)
+•	 The computer can not be a domain controller.
+SMARTsend may also be installed on a shared print
+or file server with the above minimum specifications.
+©2009 Xerox Corporation. All rights reserved. Xerox® and the sphere of connectivity design and Document Centre® DocuShare®,
+SMARTsend®, WorkCentre® and ColorQube™ are trademarks of Xerox Corporation in the United States and/or other countries. 09/09
+610P729914A
+Operating Systems Supported
+•	 Windows 2003 Server with ASP.NET enabled,
+all service packs and critical updates and Internet
+Information Services installed
+•	 Windows 2008 Server
+•	 Windows XP Professional Workstation
+SP2 Platform
+•	 Vista Business Edition
+The SMARTsend EIP applications are only supported
+on a Windows 2003 and 2008 servers—not XP Pro
+or Vista Business Server.
+SMARTsend may also be installed on the above
+operating systems in conjunction with VMware
+virtual infrastructure or Microsoft Virtual PC/Virtual
+Server. This may result in reduced performance
+(slower processing) based on the virtual machine.
+Client Requirements
+The SMARTsend client interface is web browserbased
+and can be accessed through the following
+supported web browsers:
+Windows Clients
+• Microsoft Internet Explorer version 5.5 and higher
+Windows/Mac Clients
+• Netscape Navigator version 7.0 and higher
+Mac OS X v10.2 or later
+• Mozilla version 1.7 and later
+• Mozilla FireFox version 1.0.6 and higher
+Linux/Unix Clients
+• Mozilla version 1.7 and later
+• Mozilla FireFox version 1.0.6 and higher
+Supported Xerox Multifunction Devices*
+The following Xerox scan-enabled multifunction
+devices have been certified to work with SMARTsend:
+•	 ColorQube™ 9201/9202/9203
+•	 Document Centre® 240 ST, 255 ST, 265 ST
+•	 Document Centre 425, 426, 430, 432, 440
+•	 Document Centre 460 ST, 470ST, 480ST, 490ST
+•	 Document Centre 535, 545, 555
+•	 WorkCentre® 232/238, 245/255, 265/275
+•	 WorkCentre 4150, 5030/5050, 7132
+•	 WorkCentre 5632/5638/5645/5655/5665/
+5675/5687
+•	 WorkCentre 7328/7336/7345, 7425/7428/7435
+•	 WorkCentre 7655/7665/7675
+•	 WorkCentre M20/M20i, M24
+•	 WorkCentre M118/M118i
+•	 WorkCentre Pro 32, 35, 40, 45, 55, 65, 75, 90
+•	 WorkCentre Pro 123/128, 133, 165/175
+•	 WorkCentre Pro 232/238, 245/255, 265/275
+•	 WorkCentre Pro C2128/C2636/C3545
+•	 Xerox 3635, 4260, 6400, 7232
+•	 Xerox 4590/4595™ Copier/Printer (with caveats)
+*Check www.xerox.com for SMARTsend support.
+Internet Fax or E-Mail enabled devices
+(through the use of SMARTsend Pro PaperWare
+coversheets), including:
+•	 WorkCentre Pro 685/785
+•	 WorkCentre M20i
+•	 WorkCentre M118i
+•	 WorkCentre M24
+WorkCentre Pro and
+Document Centre Requirements
+•	 Scan to File enabled
+•	 TCP/IP
+•	 lpr enabled
+•	DNS host name or static IP address assigned
+Output Destination and
+Repositories Supported
+•	 Email
+•	 FTP
+•	 Microsoft Network Folder
+•	NetWare Folder
+(Novell® NetWare—version 5.x or 6.x)
+•	 Remote Printer
+•	 Scan to URL
+•	Domino.doc (version 3.1)
+•	Domino (version 5.x or 6.0)
+•	DocuShare 5.0 and 6.0
+•	 Microsoft SharePoint Portal Server 2001, 2003
+and 2007
+•	 Hummingbird DM 5.1.0.5 (optional)
+•	Interwoven WorkSite 8.0 (optional)
+•	Documentum 5.2.5.SP3 (optional)
+•	 Live Link Enterprise Server 9.5 (optional)
+                
+            </apex:form> 
+            <!--<apex:relatedList list="Associations__r"/>-->
+            <apex:outputPanel id="rerenderMe">
+                <apex:actionStatus startText="Requesting..." stopText="Finished...">
+                    <apex:facet name="stop">
+                        <apex:detail subject="{!$CurrentPage.parameters.id}" relatedList="false"/>
+                    </apex:facet>
+                </apex:actionStatus>
+            </apex:outputPanel>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

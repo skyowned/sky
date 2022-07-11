@@ -1,0 +1,7 @@
+<apex:page >
+    <iframe src="file://C:\Users\428809\Downloads\AMI - 2nd Jan\AMI\landing page.html" width="70%" height="80">
+        <ilayer src="file://C:\Users\428809\Downloads\AMI - 2nd Jan\AMI\landing page.html">
+            <p>See our <a href="file://C:\Users\428809\Downloads\AMI - 2nd Jan\AMI\landing page.html">newsflashes</a>.</p>
+        </ilayer>
+    </iframe>
+</apex:page>

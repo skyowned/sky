@@ -1,0 +1,18 @@
+<apex:page controller="VideoPlayerController">
+    <apex:form enctype="multipart/form-data">
+        <apex:pageMessages />
+        <apex:pageBlock title="Upload a Video">         
+            <apex:pageBlockSection showHeader="false" columns="2" id="block1">
+                <apex:commandButton action="{!authenticate}" value="Authenticate to Vimeo" id="Authenticate"/>
+            </apex:pageBlockSection>   
+            <!--<apex:inputText value="{!specificUrl}"/>-->
+        </apex:pageBlock>
+        <apex:commandButton action="{!play}" value="Play uploaded video" id="play"/>
+    </apex:form>
+    
+    <apex:outputText value="{!specificUrl}" escape="false" />
+    <apex:outputPanel rendered="{!videoId!=''}">
+        
+
+    </apex:outputPanel>
+</apex:page>

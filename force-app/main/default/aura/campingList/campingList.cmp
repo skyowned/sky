@@ -1,0 +1,23 @@
+<aura:component controller="CampingListController">
+     <ltng:require styles="/resource/slds103/styles/salesforce-lightning-design-system.css"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+         <aura:handler name="addItemEvent" event="c:addItemEvent"
+        action="{!c.handleAddItem}"/>
+ 
+    <aura:attribute name="items" type="Camping_Item__c[]"/>
+    <!-- CREATE NEW ITEM FORM -->
+   <c:campingListForm />
+    <!-- / CREATE NEW ITEM FORM -->
+    <div class="slds-card slds-p-top--medium">
+        <header class="slds-card__header">
+           <h3 class="slds-text-heading--small">Items</h3>
+        </header>
+        <section class="slds-card__body">
+            <div id="list" class="row">
+                <aura:iteration items="{!v.items}" var="item">
+                    <c:campingListItem item="{!item}"/>
+                </aura:iteration>
+            </div>
+        </section>
+    </div>
+</aura:component>

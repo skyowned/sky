@@ -1,0 +1,10 @@
+<apex:page controller="callToolingAPI" action="{!getData}">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!lstTCW}" var="a">
+                <apex:column value="{!a.Classname}"/>
+                <apex:column value="{!a.Percentage}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
